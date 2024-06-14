@@ -1,0 +1,4 @@
+API_BASE_URL='https://einvoicingstage.my.pwc.com/islandhospital'
+CLIENT_ID='4d493e84-3004-43ef-9e73-8f0b1ad67c78'
+CLIENT_SECRET='Fsj8Q~U2WCsk245.M0YlF54xG~e2QyEd47e~Dcoe'
+SCOPE='0096ae5c-7d8b-495b-b3ef-0e04b2b93789/.default'
