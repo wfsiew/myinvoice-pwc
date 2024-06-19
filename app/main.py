@@ -110,6 +110,8 @@ async def submissions(settings: Annotated[Settings, Depends(get_settings)]):
     headers = {
         'Authorization': f'Bearer {DataManager.access_token}',
         'Content-Type': 'application/xml',
+        'Accept': '*/*',
+        'Connection': 'keep-alive',
         'User-Agent': 'wf001',
         'ErpId': 'wf001'
     }
@@ -226,7 +228,7 @@ async def submissions(settings: Annotated[Settings, Depends(get_settings)]):
     </line>
 </document>'''
     xml = doc.encode('utf-8')
-    res = await cli.post(f'{settings.api_base_url}/api/submissions', headers=headers, content=doc)
+    res = await cli.post(f'{settings.api_base_url}/api/submissions', headers=headers, content=xml)
     print(res.status_code)
     return 'ok'
 
@@ -236,6 +238,8 @@ async def getsubmission_by_erpid(erpid: str, settings: Annotated[Settings, Depen
     headers = {
         'Authorization': f'Bearer {DataManager.access_token}',
         'PwC-User-Agent': 'pwc_excel',
+        'Accept': '*/*',
+        'Connection': 'keep-alive',
         'User-Agent': 'wf001'
     }
     prm = {
