@@ -10,7 +10,7 @@ from typing import Annotated
 
 from .config import Settings
 from .constants import *
-import httpx, jinja2, json
+import httpx, jinja2, json, base64
 
 @lru_cache
 def get_settings():
@@ -228,7 +228,9 @@ async def submissions(settings: Annotated[Settings, Depends(get_settings)]):
     </line>
 </document>'''
     xml = doc.encode('utf-8')
-    res = await cli.post(f'{settings.api_base_url}/api/submissions', headers=headers, content=xml)
+    v = base64.b64encode(xml)
+    k = v.decode('utf-8')
+    res = await cli.post(f'{settings.api_base_url}/api/submissions', headers=headers, content=k)
     print(res.status_code)
     return 'ok'
 
